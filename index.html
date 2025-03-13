@@ -92,66 +92,21 @@
         <div id="left-leg" class="legs small-legs left-leg"></div>
         <div id="right-leg" class="legs small-legs right-leg"></div>
         <div id="head" class="head"></div>
-        
-
+        <br><br>
+        <br>
+        <br>
+        <br><br>
+        <br>
+        <br>
+        <p id="debugText">Debug Text</p>
+        <button id="maleBeanButton" onclick="beanCreation('hLCX', 'hLCY')">Male Bean (hLCY)</button>
+        <button id="femaleBeanButton" onclick="beanCreation('hLCX', 'hLCX')">Female Bean (hLCX)</button>
+        <button id="newGenerationButton" onclick="newGeneration()">Create New Generation</button>
+        <div class="generationContainer" id="generation1">
+            <button onclick="beanCreation('hLCX', 'hLCY');"> hLCX, hLCY</button>
+        </div>
     </div>
 
-    <script>
-        function beanCreation(motherGamede, fatherGamede) {
-            let hands = motherGamede[0] + fatherGamede[0];
-            let legs = motherGamede[1] + fatherGamede[1];
-            let color = motherGamede[2] + fatherGamede[2];
-
-            let bean = document.getElementById("bean");
-            let leftHand = document.getElementById("left-hand");
-            let rightHand = document.getElementById("right-hand");
-            let leftLeg = document.getElementById("left-leg");
-            let rightLeg = document.getElementById("right-leg");
-
-            // Dominant-Recessive for Hands
-            let handSize = hands.includes("H") ? "small-hands" : "large-hands";
-            leftHand.className = `hands ${handSize} left-hand`;
-            rightHand.className = `hands ${handSize} right-hand`;
-
-            // Incomplete Dominance for Legs
-            let legSize = (legs === "LL") ? "large-legs" :
-                          (legs === "Ll" || legs === "lL") ? "medium-legs" :
-                          "small-legs";
-            leftLeg.className = `legs ${legSize} left-leg`;
-            rightLeg.className = `legs ${legSize} right-leg`;
-
-            // Co-Dominance for Color
-            if (color === "CC") {
-                bean.style.backgroundImage = "";
-                bean.style.backgroundColor = "red";
-            } else if (color === "Cc" || color === "cC") {
-                bean.style.backgroundImage = "radial-gradient(circle, white 20%, red 70%)";
-                bean.style.backgroundColor = "";
-            } else if (color === "cc") {
-                bean.style.backgroundImage = "";
-                bean.style.backgroundColor = "white";
-            }
-            // Gender
-            let motherGenderChromosome = motherGamede[3].toUpperCase();
-            let fatherGenderChromosome = fatherGamede[3].toUpperCase();
-            if (motherGenderChromosome === "X" && fatherGenderChromosome === "X") {
-                let head = document.getElementById("head");
-                head.style.backgroundColor = "black";
-            } else if (motherGenderChromosome === "X" && fatherGenderChromosome === "Y") {
-                let head = document.getElementById("head");
-                head.style.backgroundColor = "yellow";
-            }
-            // X Linked Mutations
-            let motherMutationChromosome = motherGamede[3];
-            let fatherMutationChromosome = fatherGamede[3];
-            Console.log(motherMutationChromosome + fatherMutationChromosome);
-            let genderChrome = motherMutationChromosome + fatherMutationChromosome;
-            if(genderChrome.includes("x") && !(genderChrome.includes("X"))){
-                head.style.backgroundColor = "purple";
-            }
-        }
-
-        beanCreation("hLCx", "hLCY");
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
