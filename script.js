@@ -1,8 +1,10 @@
 let generation = 1;
 let randomBeanGamete1 = "";
 let randomBeanGamete2 = "";
+let currentGamete1 = "hLCX";
+let currentGamete2 = "hLCY";
 
-function createRandomBean(){
+function createRandomBean(male){
     const hands = Math.random() > 0.5 ? "H" : "h";
     const legs = Math.random() > 0.5 ? "L" : "l";
     const color = Math.random() > 0.5 ? "C" : "c";
@@ -11,7 +13,13 @@ function createRandomBean(){
     const hands2 = Math.random() > 0.5 ? "H" : "h";
     const legs2 = Math.random() > 0.5 ? "L" : "l";
     const color2 = Math.random() > 0.5 ? "C" : "c";
-    const gender2 = Math.random() > 0.5 ? "X" : "Y";
+    if(male == true){
+       const gender2 = "Y"
+    }
+    else{
+      const gender2 = Math.random() > 0.2 ? "X" : "x";
+
+    }
     randomBeanGamete2 = hands2 + legs2 + color2 + gender2;
 }
 
@@ -23,6 +31,7 @@ function beanCreation(motherGamede, fatherGamede) {
   let fatherGenderChromosome = fatherGamede[3].toUpperCase();
   let motherMutationChromosome = motherGamede[3];
   let fatherMutationChromosome = fatherGamede[3];
+  
   let genderChrome = motherMutationChromosome + fatherMutationChromosome;
   let xLinkedMutation = false;
   if (genderChrome.includes("x") && !genderChrome.includes("X")) {
@@ -79,9 +88,32 @@ function newGeneration() {
   let newGen = document.createElement("div");
   newGen.id = "generation" + (generation + 1);
   newGen.className = "generationContainer";
-  let motherGamede = prompt("Enter mother gamede:");
-  let fatherGamede = prompt("Enter father gamede:");
   let newButton = document.createElement("button");
+  let currentParentMale = false;
+  if(currentGamete2.charAt(3).toUpperCase == "X"){
+    createRandomBean(false);
+    currentParentMale = false;
+  }
+  else if (currentGamete2.charAt(3).toUpperCase == "Y") {
+    createRandomBean(true);
+    currentParentMale = true;
+  }
+  else{
+    debugText.innerHTML = `Error`;
+  }
+  let motherGamede = "";
+  let fatherGamede = "";
+  if(currentParentMale == false){
+    motherGamede = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
+    fatherGamede = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
+  }
+  else if(currentParentMale == true){
+    motherGamede = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
+    fatherGamede = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
+  }
+  else{
+    debugText.innerHTML = `Error`;
+  }
   newButton.innerHTML = `${motherGamede}, ${fatherGamede}`;
   newButton.onclick = function() {
     beanCreation(motherGamede, fatherGamede);
