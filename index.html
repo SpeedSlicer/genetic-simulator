@@ -1,90 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genetic Simulator</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .bean-container {
-            position: relative;
-            width: 100px;
-            height: 150px;
-        }
-        .bean {
-            width: 50px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: gray;
-            position: absolute;
-            top: 40px;
-            left: 25px;
-        }
-        .hands, .legs {
-            position: absolute;
-            background-color: black;
-            border-radius: 50%;
-        }
-        .small-hands, .medium-hands, .large-hands {
-            top: 50px;
-        }
-        .small-hands {
-            width: 15px;
-            height: 15px;
-        }
-        .medium-hands {
-            width: 25px;
-            height: 25px;
-        }
-        .large-hands {
-            width: 35px;
-            height: 35px;
-        }
-        .left-hand {
-            left: -20px;
-        }
-        .right-hand {
-            right: -20px;
-        }
-        .small-legs, .medium-legs, .large-legs {
-            bottom: -10px;
-        }
-        .small-legs {
-            width: 15px;
-            height: 15px;
-        }
-        .medium-legs {
-            width: 25px;
-            height: 25px;
-        }
-        .large-legs {
-            width: 35px;
-            height: 35px;
-        }
-        .left-leg {
-            left: 15px;
-        }
-        .right-leg {
-            right: 15px;
-        }
-        .head {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: gray;
-            position: absolute;
-            top: 1vb;
-            left: 2vb;
-        }
-    </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shaun's Genetic Simulator</title>
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+    <p class="debugText" id="debugText">Debug Text</p>
+<!-- Pedigree Tree Container -->
+<div class="pedigree-tree" id="pedigreeTree">
+    <button id="newGenerationButton" onclick="newGeneration()">Create New Generation</button>
+
+    <div class="generationContainer" id="generation1">
+      <button onclick="beanCreation('hLCX', 'hLCY');">hLCX, hLCY</button>
+    </div>
+  </div>
     <div class="bean-container">
         <div id="bean" class="bean"></div>
         <div id="left-hand" class="hands small-hands left-hand"></div>
@@ -92,19 +24,12 @@
         <div id="left-leg" class="legs small-legs left-leg"></div>
         <div id="right-leg" class="legs small-legs right-leg"></div>
         <div id="head" class="head"></div>
-        <br><br>
-        <br>
-        <br>
-        <br><br>
-        <br>
-        <br>
-        <p id="debugText">Debug Text</p>
-        <button id="newGenerationButton" onclick="newGeneration()">Create New Generation</button>
-        <div class="generationContainer" id="generation1">
-            <button onclick="beanCreation('hLCx', 'hLCY');"> hLCX, hLCY</button>
-        </div>
-    </div>
+        
+      
+        
+        
+      </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
