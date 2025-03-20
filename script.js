@@ -17,20 +17,17 @@ function createRandomBean(isMale) {
   const gender2 = isMale ? "Y" : Math.random() > 0.5 ? "X" : "x";
   randomBeanGamete2 = hands2 + legs2 + color2 + gender2;
 }
-function beanCreation(motherGamede, fatherGamede) {
-  let hands = motherGamede[0] + fatherGamede[0];
-  let legs = motherGamede[1] + fatherGamede[1];
-  let color = motherGamede[2] + fatherGamede[2];
-  let motherGenderChromosome = motherGamede[3].toUpperCase();
-  let fatherGenderChromosome = fatherGamede[3].toUpperCase();
-  let motherMutationChromosome = motherGamede[3];
-  let fatherMutationChromosome = fatherGamede[3];
 
+function beanCreation(motherGamete, fatherGamete) {
+  // Fix typo in parameter names
+  let hands = motherGamete[0] + fatherGamete[0]; 
+  let legs = motherGamete[1] + fatherGamete[1];
+  let color = motherGamete[2] + fatherGamete[2];
+  let motherGenderChromosome = motherGamete[3].toUpperCase();
+  let fatherGenderChromosome = fatherGamete[3].toUpperCase();
+  let motherMutationChromosome = motherGamete[3];
+  let fatherMutationChromosome = fatherGamete[3];
   let genderChrome = motherMutationChromosome + fatherMutationChromosome;
-  let xLinkedMutation = false;
-  if (genderChrome.includes("x") && !genderChrome.includes("X")) {
-    xLinkedMutation = true;
-  }
   let bean = document.getElementById("bean");
   let leftHand = document.getElementById("left-hand");
   let rightHand = document.getElementById("right-hand");
@@ -42,17 +39,18 @@ function beanCreation(motherGamede, fatherGamede) {
     console.error("One or more required DOM elements are missing.");
     return;
   }
-
-  debugText.innerHTML = `Hands: ${hands}, Legs: ${legs}, Color: ${color}, <br>X-Linked Mutation: ${xLinkedMutation}, Gender: ${genderChrome}`;
-
+  
   // Dominant-Recessive for Hands
+  // Large Hands is recessive (h), Small Hands is dominant (H)
   let handSize = hands.includes("H") ? "small-hands" : "large-hands";
   leftHand.className = `hands ${handSize} left-hand`;
   rightHand.className = `hands ${handSize} right-hand`;
 
   // Incomplete Dominance for Legs
+  // Large Legs is recessive (l), Medium Legs is heterozygous (Ll), Small Legs is dominant (L)
+  // Note: "Ll" and "lL" are treated as heterozygous for medium legs
   let legSize =
-    legs === "LL"
+    legs === "ll"
       ? "large-legs"
       : legs === "Ll" || legs === "lL"
       ? "medium-legs"
@@ -61,6 +59,7 @@ function beanCreation(motherGamede, fatherGamede) {
   rightLeg.className = `legs ${legSize} right-leg`;
 
   // Co-Dominance for Color
+  // Both of the traits show up if both are present
   if (color === "CC") {
     bean.style.backgroundImage = "";
     bean.style.backgroundColor = "red";
@@ -73,15 +72,24 @@ function beanCreation(motherGamede, fatherGamede) {
   }
 
   // Gender
+  // Determined by the father's chromosome (Y or X)
   let head = document.getElementById("head");
   if (head) {
-    if (motherGenderChromosome === "X" && fatherGenderChromosome === "Y") {
+    if (motherGenderChromosome == "X" && fatherGenderChromosome == "Y") {
       head.style.backgroundColor = "yellow";
     } else {
       head.style.backgroundColor = "black";
     }
   }
-
+  
+  // X-Linked Mutation
+  // If both end genes have the mutation, they get it
+  let xLinkedMutation = false; 
+  if (head && motherMutationChromosome != "X" && fatherMutationChromosome != "X") {
+    head.style.backgroundColor = "green";
+    xLinkedMutation = true;
+  }
+  
   bean.style.transition = "background-color 0.2s, background-image 0.2s";
   leftHand.style.transition = "all 0.2s";
   rightHand.style.transition = "all 0.2s";
@@ -90,6 +98,9 @@ function beanCreation(motherGamede, fatherGamede) {
   if (head) {
     head.style.transition = "background-color 0.2s";
   }
+  
+  console.log(`Hands: ${hands}, Legs: ${legs}, Color: ${color}, X-Linked Mutation: ${xLinkedMutation}, Gender: ${genderChrome}`);
+  debugText.innerHTML = `Hands: ${hands}, Legs: ${legs}, Color: ${color}, <br>X-Linked Mutation: ${xLinkedMutation}, Gender: ${genderChrome}`;
 }
 
 function newGeneration() {
@@ -99,36 +110,102 @@ function newGeneration() {
   let newGen = document.createElement("div");
   newGen.id = "generation" + (generation + 1);
   newGen.className = "generationContainer";
-  if(currentGamete2.charAt(3).toUpperCase() == "Y"){
+
+  if (currentGamete2.charAt(3).toUpperCase() == "Y") {
     currentParentMale = true;
   }
+
   createRandomBean(!currentParentMale);
-  if(currentParentMale == false){
-    motherGamede = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
-    fatherGamede = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
+
+  let motherFGamete, fatherFGamete;
+  
+  if (currentParentMale == false) {
+    motherFGamete = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
+    fatherFGamete = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
+  } else {
+    motherFGamete = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
+    fatherFGamete = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
   }
-  else if(currentParentMale == true){
-    motherGamede = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
-    fatherGamede = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
-  }
+
+  const otherParentGamete1 = randomBeanGamete1;
+  const otherParentGamete2 = randomBeanGamete2;
+  
   let otherParentButton = document.createElement("button");
-  otherParentButton.innerHTML = `${randomBeanGamete1}, ${randomBeanGamete2}`;
+  otherParentButton.innerHTML = `${otherParentGamete1}, ${otherParentGamete2}`;
   otherParentButton.onclick = function () {
-    beanCreation(randomBeanGamete1, randomBeanGamete2);
+    beanCreation(otherParentGamete1, otherParentGamete2);
   };
   currentGen.appendChild(otherParentButton);
-  let newButton = document.createElement("button");
-  newButton.innerHTML = `${motherGamede}, ${fatherGamede}`;
-  newButton.onclick = function () {
-    beanCreation(motherGamede, fatherGamede);
-  };
-  currentGamete1 = motherGamede;
-  currentGamete2 = fatherGamede;
-  newGen.appendChild(newButton);
 
+  const storedMotherGamete = motherFGamete;
+  const storedFatherGamete = fatherFGamete;
+  
+  let newButton = document.createElement("button");
+  newButton.innerHTML = `${storedMotherGamete}, ${storedFatherGamete}`;
+  newButton.onclick = function () {
+    beanCreation(storedMotherGamete, storedFatherGamete);
+  };
+
+  currentGamete1 = motherFGamete;
+  currentGamete2 = fatherFGamete;
+
+  newGen.appendChild(newButton);
   pedigreeTree.appendChild(newGen);
 
   generation++;
 }
 
+function newCustomGeneration() {
+  let pedigreeTree = document.getElementById("pedigreeTree");
+  let currentGen = document.getElementById("generation" + generation);
+  let currentParentMale = false;
+  let newGen = document.createElement("div");
+  newGen.id = "generation" + (generation + 1);
+  newGen.className = "generationContainer";
+
+  if (currentGamete2.charAt(3).toUpperCase() == "Y") {
+    currentParentMale = true;
+  }
+
+  let motherFGamete, fatherFGamete;
+
+  const randomBeanGamete1 = window.prompt("Enter the Mother Gamete", "hLCX");
+  const randomBeanGamete2 = window.prompt("Enter the Father Gamete", "hLCY");
+
+  
+  if (currentParentMale == false) {
+    motherFGamete = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
+    fatherFGamete = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
+  } else {
+    motherFGamete = Math.random() > 0.5 ? randomBeanGamete1 : randomBeanGamete2;
+    fatherFGamete = Math.random() > 0.5 ? currentGamete1 : currentGamete2;
+  }
+
+  const otherParentGamete1 = randomBeanGamete1;
+  const otherParentGamete2 = randomBeanGamete2;
+  
+  let otherParentButton = document.createElement("button");
+  otherParentButton.innerHTML = `${otherParentGamete1}, ${otherParentGamete2}`;
+  otherParentButton.onclick = function () {
+    beanCreation(otherParentGamete1, otherParentGamete2);
+  };
+  currentGen.appendChild(otherParentButton);
+
+  const storedMotherGamete = motherFGamete;
+  const storedFatherGamete = fatherFGamete;
+  
+  let newButton = document.createElement("button");
+  newButton.innerHTML = `${storedMotherGamete}, ${storedFatherGamete}`;
+  newButton.onclick = function () {
+    beanCreation(storedMotherGamete, storedFatherGamete);
+  };
+
+  currentGamete1 = motherFGamete;
+  currentGamete2 = fatherFGamete;
+
+  newGen.appendChild(newButton);
+  pedigreeTree.appendChild(newGen);
+
+  generation++;
+}
 beanCreation("hLCX", "hLCY");
