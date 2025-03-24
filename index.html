@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genetic Inheritance Simulator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <header>
@@ -14,11 +14,21 @@
         <section>
             <h2>Inheritance Patterns</h2>
             <p></p>
+            <h4>These examples are oversimplified, and as always, genetics is much more complex.</h4>
             <h3>Dominant-Recessive</h3>
-            <p>Dominant-Recessive genes are what you generally learn in school. There is a dominant allele, and a recessive allele. If there is a dominant allele present, then you get the dominant, but if there is only recessive alleles present, then you get the recessive trait. This shows in eye colors of humans.</p>
+            <p>Dominant-Recessive genes are what you generally learn in school. There is a dominant allele, and a recessive allele. If there is a dominant allele present, then you get the dominant, but if there is only recessive alleles present, then you get the recessive trait. This shows in eye colors of humans. </p>
+            <img src="resources/dominant-recessive.png" alt="Dominant-Recessive Inheritance">
+
             <h3>Incomplete</h3>
-            <p>Incomplete dominace is when neither allele is fully dominant. It causes a blended/intermediate phenotype. An example of these are the color of petals on flowers.</p>
+            <p>Incomplete dominance is when neither allele is fully dominant. It causes a blended/intermediate phenotype. An example of these are the color of petals on flowers.</p>
+            <img src="resources/incomplete-dominance.png" alt="Incomplete Inheritance">
+
             <h3>Co-Dominance</h3>
+            <p>Co-Dominance occurs when both genes are dominant, and both traits show up. An example of this is cow fur.</p>
+            <img src="resources/codominance.png" alt="Co-Dominance Inheritance">
+            <h3>X-Linked (Recessive)</h3>
+            <p>X-Linked traits are traits that are passed down through mutations in the X chromosome. Due to it being recessive, requiring all X chromosomes to have that mutation, more males are affected than females, due to males only having one X chromosome. Females can be carriers of this trait though, as the the X chromosome from females does pass down to future generations. </p>
+            <img class="x_img" src="resources/xlinked.png" alt="X-Linked Inheritance">
             <p></p>
         </section>
         <section>
@@ -27,7 +37,7 @@
             <p>Each trait that the bean has simulates a different inheritance pattern. By clicking New Generation, you create a random (or custom) partner for the bean, and then a offspring is made from those two beans.</p>
             <p>Hands: Dominant-Recessive</p>
             <p>Legs: Incomplete Dominance</p>
-            <p>Color: Co-Dominace</p>
+            <p>Color: Co-Dominance</p>
             <p>Gender & X Linked: Head Color (Yellow is Male, Black is Female, and Green is X linked mutation)</p>
             <p></p>
             <iframe src="sim.html"></iframe>
