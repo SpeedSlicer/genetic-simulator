@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shaun's Genetic Simulator</title>
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+    <p class="debugText" id="debugText">Debug Text</p>
+<!-- Pedigree Tree Container -->
+<div class="pedigree-tree" id="pedigreeTree">
+    <button id="newGenerationButton" class="new" onclick="newGeneration()">Create New Generation</button>
+    <br>
+    <button id="customGenerationButton" class="new" onclick="newCustomGeneration()">Create Custom Generation</button>
+
+    <div class="generationContainer" id="generation1">
+      <button class="beanButton" onclick="beanCreation('hLCX', 'hLCY');">hLCX, hLCY</button>
+    </div>
+  </div>
+    <div class="bean-container">
+        <div id="bean" class="bean"></div>
+        <div id="left-hand" class="hands small-hands left-hand"></div>
+        <div id="right-hand" class="hands small-hands right-hand"></div>
+        <div id="left-leg" class="legs small-legs left-leg"></div>
+        <div id="right-leg" class="legs small-legs right-leg"></div>
+        <div id="head" class="head"></div>
+        
+      
+        
+        
+      </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

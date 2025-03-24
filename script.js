@@ -49,12 +49,18 @@ function beanCreation(motherGamete, fatherGamete) {
   // Incomplete Dominance for Legs
   // Large Legs is recessive (l), Medium Legs is heterozygous (Ll), Small Legs is dominant (L)
   // Note: "Ll" and "lL" are treated as heterozygous for medium legs
-  let legSize =
-    legs === "ll"
-      ? "large-legs"
-      : legs === "Ll" || legs === "lL"
-      ? "medium-legs"
-      : "small-legs";
+  let legSize;
+  if (legs == "Ll" || legs == "lL") {
+    legSize = "medium-legs";
+  } else if (legs == "ll"){
+    legSize = "small-legs";
+  }
+  else if (legs == "LL") {
+    legSize = "large-legs";
+  }
+  else{
+    throw new Error("Invalid leg size combination");
+  }
   leftLeg.className = `legs ${legSize} left-leg`;
   rightLeg.className = `legs ${legSize} right-leg`;
 
@@ -132,6 +138,7 @@ function newGeneration() {
   
   let otherParentButton = document.createElement("button");
   otherParentButton.innerHTML = `${otherParentGamete1}, ${otherParentGamete2}`;
+  otherParentButton.className = "beanButton";
   otherParentButton.onclick = function () {
     beanCreation(otherParentGamete1, otherParentGamete2);
   };
@@ -141,6 +148,7 @@ function newGeneration() {
   const storedFatherGamete = fatherFGamete;
   
   let newButton = document.createElement("button");
+  newButton.className = "beanButton";
   newButton.innerHTML = `${storedMotherGamete}, ${storedFatherGamete}`;
   newButton.onclick = function () {
     beanCreation(storedMotherGamete, storedFatherGamete);
@@ -185,6 +193,7 @@ function newCustomGeneration() {
   const otherParentGamete2 = randomBeanGamete2;
   
   let otherParentButton = document.createElement("button");
+  otherParentButton.className = "beanButton";
   otherParentButton.innerHTML = `${otherParentGamete1}, ${otherParentGamete2}`;
   otherParentButton.onclick = function () {
     beanCreation(otherParentGamete1, otherParentGamete2);
@@ -195,6 +204,7 @@ function newCustomGeneration() {
   const storedFatherGamete = fatherFGamete;
   
   let newButton = document.createElement("button");
+  newParent.className = "beanButton";
   newButton.innerHTML = `${storedMotherGamete}, ${storedFatherGamete}`;
   newButton.onclick = function () {
     beanCreation(storedMotherGamete, storedFatherGamete);

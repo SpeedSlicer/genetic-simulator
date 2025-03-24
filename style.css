@@ -1,101 +1,121 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  .bean-container {
-    position: relative;
-    width: 100px;
-    height: 150px;
-  }
-  .bean {
-    width: 50px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: gray;
-    position: absolute;
-    top: 40px;
-    left: 25px;
-  }
-  .hands,
-  .legs {
-    position: absolute;
-    background-color: black;
-    border-radius: 50%;
-  }
-  .small-hands,
-  .medium-hands,
-  .large-hands {
-    top: 50px;
-  }
-  .small-hands {
-    width: 15px;
-    height: 15px;
-  }
-  .medium-hands {
-    width: 25px;
-    height: 25px;
-  }
-  .large-hands {
-    width: 35px;
-    height: 35px;
-  }
-  .left-hand {
-    left: -20px;
-  }
-  .right-hand {
-    right: -20px;
-  }
-  .small-legs,
-  .medium-legs,
-  .large-legs {
-    bottom: -10px;
-  }
-  .small-legs {
-    width: 15px;
-    height: 15px;
-  }
-  .medium-legs {
-    width: 25px;
-    height: 25px;
-  }
-  .large-legs {
-    width: 35px;
-    height: 35px;
-  }
-  .left-leg {
-    left: 15px;
-  }
-  .right-leg {
-    right: 15px;
-  }
-  .head {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: gray;
-    position: absolute;
-    top: 1vb;
-    left: 2vb;
-  }
-  .pedigree-tree {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .generationContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .generationContainer button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #d6d3d3;
+}
+.bean-container {
+  position: relative;
+  width: 100px;
+  height: 150px;
+}
+.bean {
+  width: 50px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: gray;
+  position: absolute;
+  top: 40px;
+  left: 25px;
+}
+.hands,
+.legs {
+  position: absolute;
+  background-color: black;
+  border-radius: 50%;
+}
+.small-hands,
+.medium-hands,
+.large-hands {
+  top: 50px;
+}
+.small-hands {
+  width: 15px;
+  height: 15px;
+}
+.medium-hands {
+  width: 25px;
+  height: 25px;
+}
+.large-hands {
+  width: 35px;
+  height: 35px;
+}
+.left-hand {
+  left: -20px;
+}
+.right-hand {
+  right: -20px;
+}
+.small-legs,
+.medium-legs,
+.large-legs {
+  bottom: -10px;
+}
+.small-legs {
+  width: 15px;
+  height: 15px;
+}
+.medium-legs {
+  width: 25px;
+  height: 25px;
+}
+.large-legs {
+  width: 35px;
+  height: 35px;
+}
+.left-leg {
+  left: 15px;
+}
+.right-leg {
+  right: 15px;
+}
+.head {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: gray;
+  position: absolute;
+  top: 1vb;
+  left: 2vb;
+}
+.pedigree-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.generationContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.generationContainer button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.new {
+  background-color: #04aa6d;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+.beanButton {
+  background-color: #00a8c2;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
