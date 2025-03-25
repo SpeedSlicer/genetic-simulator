@@ -204,12 +204,12 @@ function newCustomGeneration() {
   const storedFatherGamete = fatherFGamete;
   
   let newButton = document.createElement("button");
-  newParent.className = "beanButton";
+  newButton.className = "beanButton";
   newButton.innerHTML = `${storedMotherGamete}, ${storedFatherGamete}`;
   newButton.onclick = function () {
     beanCreation(storedMotherGamete, storedFatherGamete);
   };
-
+  newGen.appendChild(newButton);
   currentGamete1 = motherFGamete;
   currentGamete2 = fatherFGamete;
 
